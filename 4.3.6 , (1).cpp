@@ -1,41 +1,30 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include <iomanip>
  
 using namespace std;
- 
-int main(int argc, char *argv[])
+
+
+int f1( int width, int lengths, int punkt)
 {
-    int q;
-    cout << "Если нужно заполненить массив случайными числами, введи 1 " << endl << "Если надo заполнить массив вводом с клавиатуры, введи 2" << endl;
-    cin >> q;
-    cout << "Елси нужен 2-й пункт, то введи 2" << endl;
-    int k;
-    cin >> k;
-    if (q == 1)
-    {
-    
-    
-    int x, y, q, w;
-	cout << "Введите размеры массива" << endl;
-    cin >> x >> y; //Вводится размеры массива
-    int a[x][y];
-	int v[x][y];
+    int array1[width][lengths]; //создаётся массив
+	int array2[width][lengths]; //создаётся массив
     
     srand(time(NULL));
     cout << "Вот ваш массив" << endl;
-    for (int i = 0; i < x; i++)
-        for (int j = 0; j < y; j++)
+    for (int i = 0; i < width; i++)
+        for (int j = 0; j < lengths; j++)
 			{
-				a[i][j] = rand() ; //заполяем массив рандомными элементами
-				v[i][j] = a[i][j];
+				array1[i][j] = rand() ; //заполяем массив рандомными элементами
+				array2[i][j] = array1[i][j]; //копируем 1-й массив во второй
 			}
 		
 
-    for (int i = 0; i < x; i++)
+    for (int i = 0; i < width; i++)
     {
-        for (int j = 0; j < y; j++)
-            cout << a[i][j] << "  "; //выводим массив
+        for (int j = 0; j < lengths; j++)
+            cout << array1[i][j] << "  "; //выводим массив
         cout << endl;
 		
     }
@@ -43,83 +32,76 @@ int main(int argc, char *argv[])
 	cout << endl;
 	
     cout << "После выполнения пункта 1 массив стал выглядить вот так:" << endl;
-    for (int i = 0; i < x; i++)
+    for (int i = 0; i < width; i++)
     {
         int max = 0;
-        for (int j = 0; j < y; j++)
-            if (a[i][j] > a[i][max])
+        for (int j = 0; j < lengths; j++)
+            if (array1[i][j] > array1[i][max])
                 max = j; //находим максимальный элемент в строке
-        a[i][max] *= 0; //заменяем элемент на 0
+        array1[i][max] *= 0; //заменяем элемент на 0
     }
 
 		
-	for (int i = 0; i < x; i++)
+	for (int i = 0; i < width; i++)
     {
-        for (int j = 0; j < y; j++)
-            cout << a[i][j] << "  "; //выводим массив
+        for (int j = 0; j < lengths; j++)
+            cout << array1[i][j] << "  "; //выводим массив
         cout << endl;
 		
     }
 
 		
     cout << endl << endl;
-
-		
-    if (k == 2) //проверяем, нужен ли пункт 2 
+    if (punkt == 2) //проверяем, нужен ли пункт 2 
     {
 	cout << "После выполнения 2-го пункта, массив выглядит вот так:" << endl;	
-    for (int i = 0; i < x; i++)
+    for (int i = 0; i < width; i++)
     {
-        for (int j = 0; j < y; j++)
+        for (int j = 0; j < lengths; j++)
         {
             int f = j;
             int ff = 0;
-            if(v[i][0] % 3 == 0 && f == 0 && v[f][0] != 0)
+            if(array2[i][0] % 3 == 0 && f == 0 && array2[f][0] != 0)
             {
 				
-                for (int mm = 0; mm < y; mm++)
+                for (int mm = 0; mm < lengths; mm++)
                 {
                     cout << "0" << " ";// Вставляем перед всеми строками, первый элемент которых делится на 3, строку
 					
                 }
             }
-            if(v[i][0] % 3 == 0 && f == 0 && v[f][0] != 0)
+            if(array2[i][0] % 3 == 0 && f == 0 && array2[f][0] != 0)
             {
                 cout << endl;
             }
 			
-            cout << v[i][j] << "  ";
+            cout << array2[i][j] << "  "; //выводит 2-й массив
             ff += 1;
         }
         cout << endl;
     }
     }
-    
-        
-    }
-    
-    else
-    {
-    int x, y, q, w;
-	cout << "Введите размеры массива" << endl;
-    cin >> x >> y; //Вводится размеры массива
-    int a[x][y];
-	int v[x][y];
+}
+
+int f2( int width, int lengths, int punkt2)
+ {
+    int array1[width][lengths]; //создаётся массив
+	int array2[width][lengths]; //создаётся массив
     
     srand(time(NULL));
     cout << "Заполните массив вводос с клавиатуры" << endl;
-    for (int i = 0; i < x; i++)
-        for (int j = 0; j < y; j++)
+    for (int i = 0; i < width; i++)
+        for (int j = 0; j < lengths; j++)
 			{
 				
-				cin >> a[i][j] ; //вводим массив с клавиатуры
-				v[i][j] = a[i][j];
+				cin >> array1[i][j] ; //вводим массив с клавиатуры
+				array2[i][j] = array1[i][j]; //копируем 1-й массив во второй
 			}
 	cout << "Вот ваш массив" << endl;
-    for (int i = 0; i < x; i++)
+    for (int i = 0; i < width; i++)
     {
-        for (int j = 0; j < y; j++)
-            cout << a[i][j] << "  "; //выводим массив
+        for (int j = 0; j < lengths; j++)
+            cout << array1[i][j] << "  "; //выводим массив
         cout << endl;
 		
     }
@@ -127,20 +109,20 @@ int main(int argc, char *argv[])
 	cout << endl;
 	
     cout << "После выполнения пункта 1 массив стал выглядить вот так:" << endl;
-    for (int i = 0; i < x; i++)
+    for (int i = 0; i < width; i++)
     {
         int max = 0;
-        for (int j = 0; j < y; j++)
-            if (a[i][j] > a[i][max])
+        for (int j = 0; j < lengths; j++)
+            if (array1[i][j] > array1[i][max])
                 max = j; //находим максимальный элемент в строке
-        a[i][max] *= 0; //заменяем элемент на 0
+        array1[i][max] *= 0; //заменяем элемент на 0
     }
 
 		
-	for (int i = 0; i < x; i++)
+	for (int i = 0; i < width; i++)
     {
-        for (int j = 0; j < y; j++)
-            cout << a[i][j] << "  "; //выводим массив
+        for (int j = 0; j < lengths; j++)
+            cout << array1[i][j] << "  "; //выводим массив
         cout << endl;
 		
     }
@@ -149,36 +131,59 @@ int main(int argc, char *argv[])
     cout << endl << endl;
 
 		
-    if (k == 2) //проверяем, нужен ли пункт 2 
+    if (punkt2 == 2) //проверяем, нужен ли пункт 2 
     {
 	cout << "После выполнения 2-го пункта, массив выглядит вот так:" << endl;	
-    for (int i = 0; i < x; i++)
+    for (int i = 0; i < width; i++)
     {
-        for (int j = 0; j < y; j++)
+        for (int j = 0; j < lengths; j++)
         {
             int f = j;
             int ff = 0;
-            if(v[i][0] % 3 == 0 && f == 0 && v[f][0] != 0)
+            if(array2[i][0] % 3 == 0 && f == 0 && array2[f][0] != 0)
             {
 				
-                for (int mm = 0; mm < y; mm++)
+                for (int mm = 0; mm < lengths; mm++)
                 {
                     cout << "0" << " ";// Вставляем перед всеми строками, первый элемент которых делится на 3, строкух 
 					
                 }
             }
-            if(v[i][0] % 3 == 0 && f == 0 && v[f][0] != 0)
+            if(array2[i][0] % 3 == 0 && f == 0 && array2[f][0] != 0)
             {
                 cout << endl;
             }
 			
-            cout << v[i][j] << "  ";
+            cout << array2[i][j] << "  ";
             ff += 1;
         }
         cout << endl;
     }
     }
+ }
+ 
+ 
+int main(int argc, char *argv[])
+{
+    int punkt1;
+    cout << "Если нужно заполненить массив случайными числами, введи 1 " << endl << "Если надo заполнить массив вводом с клавиатуры, введи 2" << endl;
+    cin >> punkt1;
+    cout << "Елси нужен 2-й пункт, то введи 2" << endl;
+    int punkt2;
+    cin >> punkt2;
+    int width, lengths, q, w;
+	cout << "Введите ширину массива" << endl;
+    cin >> width; //Вводится размеры массива
+    cout << "Введите длинну массива" << endl;
+    cin >> lengths; //Вводится размеры массива
+    if (punkt1 == 1)
+    {
+        f1(width, lengths, punkt2); //вызываем 1-ю функцию
     }
-
+    else
+    {
+        f2(width, lengths, punkt2); //вызываем 2-ю функцию
+    }
+    
     return EXIT_SUCCESS;
 }
